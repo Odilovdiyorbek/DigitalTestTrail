@@ -1,0 +1,72 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+			<main class="content">
+				<div class="container-fluid p-0">
+					<div class="row">
+						<div class="col-12 col-xl-12">
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title">Question form </h5>
+								</div>
+								<div class="card-body">
+									<form  method="post" enctype="multipart/form-data" >
+										{% csrf_token %}
+										{{ form.media }}
+										{{ form.as_p }}
+										{% if direction.is_logic == True %}
+											<div>
+											  <p>Logic Question Create</p>
+											</div>
+										{{formlg.as_p}}
+                						{% endif %}
+
+										<div class="card">
+											<div class="card-header">
+											<!-- BEGIN success modal -->
+												<button type="button" class="btn btn-success" data-toggle="modal" data-target="#defaultModalSuccess">
+												  Save
+												</button>
+												<div class="modal fade" id="defaultModalSuccess" tabindex="-1" role="dialog" aria-hidden="true">
+													<div class="modal-dialog" role="document">
+														<div class="modal-content">
+															<div class="modal-header">
+																<h5 class="modal-title">Changing</h5>
+																<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																	<span aria-hidden="true">&times;</span>
+																</button>
+															</div>
+															<div class="modal-body m-3">
+																<p class="mb-0">Do you really wanna to save?</p>
+															</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+																<button type="Submit" class="btn btn-success">SAVE</button>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- END success modal -->
+												<!-- BEGIN danger modal -->
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+
+
+{% endblock content %}
+{% block js %}
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+{% endblock js %}
